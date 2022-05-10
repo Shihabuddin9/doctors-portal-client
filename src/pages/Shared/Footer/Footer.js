@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ScrollToTop from 'react-scroll-to-top';
 import footer from '../../../assets/images/footer.png'
 
 const Footer = () => {
@@ -8,6 +9,7 @@ const Footer = () => {
             backgroundImage: `url(${footer})`,
             backgroundSize: 'cover'
         }}>
+            <ScrollToTop smooth top="100" width='30' height='15' viewBox="-70 0 256 256" />
             <div className="bg-gray-100 text-center lg:text-left">
                 <div className="p-6">
                     <div className="md:flex justify-around items-center">
