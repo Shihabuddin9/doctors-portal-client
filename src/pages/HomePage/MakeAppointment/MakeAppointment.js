@@ -5,7 +5,7 @@ import SharedButton from '../../Shared/SharedButton/SharedButton';
 
 const MakeAppointment = () => {
     return (
-        <section className='md:flex items-center mt-12' style={{
+        <section className='md:flex items-center' style={{
             background: `url(${appointment})`
         }}>
             <div>
