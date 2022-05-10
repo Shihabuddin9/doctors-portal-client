@@ -1,17 +1,14 @@
 import React from 'react';
 
-const InfoCart = () => {
+const InfoCart = ({ img, cardTitle, bgColor, cardInfo }) => {
     return (
-        <div class="card lg:card-side bg-base-100 shadow-xl">
-            <figure>
-                <img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album" />
+        <div class={`card lg:card-side shadow-xl bg-accent ${bgColor}`}>
+            <figure className='ml-5'>
+                <img src={img} alt="Album" />
             </figure>
-            <div class="card-body">
-                <h2 class="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Listen</button>
-                </div>
+            <div class="card-body text-white">
+                <h2 class="card-title">{cardTitle}</h2>
+                <p>{cardInfo}</p>
             </div>
         </div>
     );
