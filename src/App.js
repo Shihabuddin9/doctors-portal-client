@@ -9,6 +9,8 @@ import Footer from './pages/Shared/Footer/Footer';
 import { useEffect, useState } from 'react';
 import { PropagateLoader } from 'react-spinners';
 import Appoinment from './pages/AppoinmentPage/Appoinment/Appoinment';
+import Signup from './pages/Login/Signup';
+import RequireAuth from './pages/Login/RequireAuth';
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -34,7 +36,14 @@ function App() {
               <Route path='/' element={<Home></Home>}></Route>
               <Route path='/about' element={<About></About>}></Route>
               <Route path='/login' element={<Login></Login>}></Route>
-              <Route path='/appointment' element={<Appoinment></Appoinment>}></Route>
+              <Route path='/signup' element={<Signup></Signup>}></Route>
+
+              <Route path='/appointment' element={
+                <RequireAuth>
+                  <Appoinment></Appoinment>
+                </RequireAuth>
+              }></Route>
+
             </Routes>
             <Footer></Footer>
           </>
