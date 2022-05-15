@@ -2,16 +2,50 @@ import React from 'react';
 import { format } from 'date-fns';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import { toast } from 'react-toastify';
 
-const BookingModal = ({ treatment, selected, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
     const { _id, name, slots } = treatment
     const [user] = useAuthState(auth)
+
+    const formattedDate = format(date, 'PP')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const slot = e.target.slot.value
         console.log(slot, _id, name)
-        setTreatment(null)
+
+
+        const booking = {
+            treatmentId: _id,
+            treatment: name,
+            date: formattedDate,
+            slot,
+            patient: user.email,
+            patientName: user.displayName,
+            phoen: e.target.number.value
+
+        }
+
+        fetch('http://localhost:5000/booking', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(booking),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    toast(`Appointment is set, ${formattedDate} at ${slot}`)
+                }
+                else {
+                    toast.error(`Already have and appointment on ${data.booking?.date} at ${data.booking?.slot}`)
+                }
+                refetch()
+                // close the modal
+                setTreatment(null)
+            })
     }
     return (
         <div>
@@ -25,7 +59,7 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
 
                             <div className="form-group mb-6">
                                 <input type="text" className="form-control block w-full px-3 py-1.5  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out  m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
-                                    aria-describedby="emailHelp123" disabled value={format(selected, 'PP')} />
+                                    aria-describedby="emailHelp123" disabled value={format(date, 'PP')} />
                             </div>
                             <div className="form-group mb-6">
                                 <select name="slot" className="select select-bordered w-full ">

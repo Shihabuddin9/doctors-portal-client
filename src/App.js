@@ -11,6 +11,11 @@ import { PropagateLoader } from 'react-spinners';
 import Appoinment from './pages/AppoinmentPage/Appoinment/Appoinment';
 import Signup from './pages/Login/Signup';
 import RequireAuth from './pages/Login/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './pages/Dashboard/Dashboard';
+import MyAppointment from './pages/Dashboard/MyAppointment';
+import MyReviews from './pages/Dashboard/MyReviews';
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -26,7 +31,7 @@ function App() {
       {
         loading ?
           <div className='flex justify-center items-center h-screen'>
-            <PropagateLoader color={'#36D7B7'} loading={loading} size={40} />
+            <PropagateLoader color={'#36D7B7'} loading={loading} size={25} />
           </div>
           :
 
@@ -44,8 +49,18 @@ function App() {
                 </RequireAuth>
               }></Route>
 
+              <Route path='/dashboard' element={
+                <RequireAuth>
+                  <Dashboard></Dashboard>
+                </RequireAuth>
+              }>
+                <Route index element={<MyAppointment></MyAppointment>}></Route>
+                <Route path='reviews' element={<MyReviews></MyReviews>}></Route>
+              </Route>
+
             </Routes>
             <Footer></Footer>
+            <ToastContainer></ToastContainer>
           </>
       }
     </div>

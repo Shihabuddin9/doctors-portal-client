@@ -3,14 +3,16 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 
-const AppoinmentBanner = ({ selected, setSelected }) => {
+const AppoinmentBanner = ({ date, setDate }) => {
+
     return (
         <div className='md:flex justify-evenly items-center md:my-20 my-12'>
             <div className=''>
                 <DayPicker
                     mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
+                    date={date}
+                    onSelect={setDate}
+
 
                 />
 
