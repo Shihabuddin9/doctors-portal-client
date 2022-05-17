@@ -6,13 +6,12 @@ import Service from './Service';
 import Loading from '../../Shared/Loading/Loading'
 
 const AvailableAppoinment = ({ date }) => {
-    const [treatment, setTreatment] = useState(null)
-    const formattedDate = format(date, 'pp')
-    const { isLoading, data: services, refetch } = useQuery(['available', formattedDate], () =>
-        fetch(`http://localhost:5000/available?date=${formattedDate}`)
-            .then(res => res.json()
-            )
-    )
+
+    const [treatment, setTreatment] = useState(null);
+
+    const formattedDate = format(date, 'PP');
+    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
+        .then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
