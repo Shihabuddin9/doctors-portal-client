@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading/Loading';
@@ -12,6 +13,8 @@ const ManageDoctors = () => {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
+    console.log(doctors)
+
 
     if (isLoading) {
         return <Loading></Loading>

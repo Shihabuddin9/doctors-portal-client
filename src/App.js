@@ -20,6 +20,7 @@ import Users from './pages/Dashboard/Users';
 import RequireAdmin from './pages/Login/RequireAdmin';
 import AddDoctor from './pages/Dashboard/AddDoctor';
 import ManageDoctors from './pages/Dashboard/ManageDoctors';
+import Payment from './pages/Dashboard/Payment';
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -61,6 +62,7 @@ function App() {
               }>
                 <Route index element={<MyAppointment></MyAppointment>}></Route>
                 <Route path='reviews' element={<MyReviews></MyReviews>}></Route>
+                <Route path='payment/:id' element={<Payment></Payment>}></Route>
 
                 <Route path='users' element={
                   <RequireAdmin>
