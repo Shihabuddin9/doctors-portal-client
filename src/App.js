@@ -18,6 +18,8 @@ import MyAppointment from './pages/Dashboard/MyAppointment';
 import MyReviews from './pages/Dashboard/MyReviews';
 import Users from './pages/Dashboard/Users';
 import RequireAdmin from './pages/Login/RequireAdmin';
+import AddDoctor from './pages/Dashboard/AddDoctor';
+import ManageDoctors from './pages/Dashboard/ManageDoctors';
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -51,6 +53,7 @@ function App() {
                 </RequireAuth>
               }></Route>
 
+              {/* Nasted Route */}
               <Route path='/dashboard' element={
                 <RequireAuth>
                   <Dashboard></Dashboard>
@@ -58,9 +61,22 @@ function App() {
               }>
                 <Route index element={<MyAppointment></MyAppointment>}></Route>
                 <Route path='reviews' element={<MyReviews></MyReviews>}></Route>
+
                 <Route path='users' element={
                   <RequireAdmin>
                     <Users></Users>
+                  </RequireAdmin>
+                }></Route>
+
+                <Route path='adddoctor' element={
+                  <RequireAdmin>
+                    <AddDoctor></AddDoctor>
+                  </RequireAdmin>
+                }></Route>
+
+                <Route path='managedoctor' element={
+                  <RequireAdmin>
+                    <ManageDoctors></ManageDoctors>
                   </RequireAdmin>
                 }></Route>
               </Route>
